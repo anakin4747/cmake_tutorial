@@ -4,37 +4,13 @@ cmake_minimum_required(VERSION 3.22)
 project(myProject VERSION 1.0.0)
 # Name project myProject and specify the VERSION variable to be 1.0.0
 
-add_library(
-    say-hello
-    src/hello.h
-    src/hello.c
-    )
-# add_library(<name> [STATIC | SHARED | MODULE]
-#              [EXCLUDE_FROM_ALL]
-#              [<source>...])
-#
-# So we add a library called say-hello from the source files hello.h and
-# hello.c
-# The library that is created will follow the format lib<name>.a for UNIX
-# systems so this one will be called libsay-hello.a 
-# This will be a STATIC library as the default is static and I did not specify
-# a type of library
-
-add_executable(cmake-good src/main.c)
+add_subdirectory(say-hello)
 # Format:
-# add_executable(<name> [WIN32] [MACOSX_BUNDLE]
-#              [EXCLUDE_FROM_ALL]
-#              [source1] [source2 ...])
-#
-# So the executable made will be cmake-good using the source file main.c
-# no other options are passed
-# The files are both relative to the directory that this file is in
+# add_subdirectory(source_dir [binary_dir] [EXCLUDE_FROM_ALL] [SYSTEM])
+# 
+# This tells cmake to look for another CMakeLists.txt in the source_dir
+# say-hello
 
-target_link_libraries(cmake-good PRIVATE say-hello)
-# target_link_libraries(<target>
-#                       <PRIVATE|PUBLIC|INTERFACE> <item>...
-#                      [<PRIVATE|PUBLIC|INTERFACE> <item>...]...)
-#
-# This command links the say-hello library to the linker for compilation
-
-
+add_subdirectory(main)
+# We need to ensure that say-hello is defined before main so that the library
+# is properly linked to the main executable 
