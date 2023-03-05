@@ -1,40 +1,23 @@
 cmake_minimum_required(VERSION 3.22)
-# State the minimum version of cmake required to be 3.22
 
 project(myProject VERSION 1.0.0)
-# Name project myProject and specify the VERSION variable to be 1.0.0
+# Project sets a variable called ${PROJECT_NAME} to the name of the project
+# and sets a variable called ${PROJECT_VERSION} to the value that follows the
+# keyword VERSION
 
-add_library(
-    say-hello
-    hello.h
-    hello.c
-    )
-# add_library(<name> [STATIC | SHARED | MODULE]
-#              [EXCLUDE_FROM_ALL]
-#              [<source>...])
-#
-# So we add a library called say-hello from the source files hello.h and
-# hello.c
-# The library that is created will follow the format lib<name>.a for UNIX
-# systems so this one will be called libsay-hello.a 
-# This will be a STATIC library as the default is static and I did not specify
-# a type of library
+# All data types in cmake are strings
+# No commas only whitespace to delimit arguments
 
-add_executable(cmake-good main.c)
-# Format:
-# add_executable(<name> [WIN32] [MACOSX_BUNDLE]
-#              [EXCLUDE_FROM_ALL]
-#              [source1] [source2 ...])
-#
-# So the executable made will be cmake-good using the source file main.c
-# no other options are passed
-# The files are both relative to the directory that this file is in
+set(MY_VARIABLE "I am a Variable")
+# Variables in cmake are not set with an assignment operator "="
+# Instead they are set with the set command. Above I am setting a variable
+# called MY_VARIABLE to the value "I am a Variable".
+# To reference this variable elsewhere you need to use ${variable name}
 
-target_link_libraries(cmake-good PRIVATE say-hello)
-# target_link_libraries(<target>
-#                       <PRIVATE|PUBLIC|INTERFACE> <item>...
-#                      [<PRIVATE|PUBLIC|INTERFACE> <item>...]...)
-#
-# This command links the say-hello library to the linker for compilation
+message(STATUS "I am a message\nThis is a variable ${MY_VARIABLE}")
+# A command analogous to echo or printf
+# We need quotes here to ensure the spaces dont delimit the message
+# If in doubt use STATUS to echo messages
+# Can be used for all sorts of messages like warnings or error messages
 
 
