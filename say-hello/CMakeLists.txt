@@ -25,3 +25,17 @@ target_include_directories(say-hello PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
 # inhereit this include path. The variable CMAKE_CURRENT_SOURCE_DIR is the
 # directory that is currently being processed. So when this file is processed,
 # the directory this file is in is added as an include directory to say-hello.
+
+target_compile_definitions(say-hello PUBLIC SAY_HELLO_VERSION=3)
+# Format:
+# target_compile_definitions(<target>
+#   <INTERFACE|PUBLIC|PRIVATE> [items1...]
+#   [<INTERFACE|PUBLIC|PRIVATE> [items2...] ...])
+#
+# This allows us to define a Macro called SAY_HELLO_VERSION that gets replace
+# with 2. We can use this Macro in our project and control its scope with
+# INTERFACE, PUBLIC, or PRIVATE. Public means everything that inhereits this
+# library inhereits this Macro. Private means the scope is limited to the
+# library and things that inhereit the library dont inhereit this Macro.
+# Interface is the opposite of PRIVATE with the macro only being defined by
+# consumers of the library but not defined within the library itself

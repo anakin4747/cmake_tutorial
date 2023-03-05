@@ -8,7 +8,7 @@ add_executable(cmake-good main.c)
 # no other options are passed
 # The files are both relative to the directory that this file is in
 
-target_link_libraries(cmake-good PRIVATE say-hello)
+target_link_libraries(cmake-good PUBLIC say-hello)
 # target_link_libraries(<target>
 #                       <PRIVATE|PUBLIC|INTERFACE> <item>...
 #                      [<PRIVATE|PUBLIC|INTERFACE> <item>...]...)
