@@ -6,8 +6,8 @@ project(myProject VERSION 1.0.0)
 
 add_library(
     say-hello
-    src/hello.h
-    src/hello.c
+    hello.h
+    hello.c
     )
 # add_library(<name> [STATIC | SHARED | MODULE]
 #              [EXCLUDE_FROM_ALL]
@@ -20,7 +20,7 @@ add_library(
 # This will be a STATIC library as the default is static and I did not specify
 # a type of library
 
-add_executable(cmake-good src/main.c)
+add_executable(cmake-good main.c)
 # Format:
 # add_executable(<name> [WIN32] [MACOSX_BUNDLE]
 #              [EXCLUDE_FROM_ALL]
